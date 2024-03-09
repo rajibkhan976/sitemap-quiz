@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,4 +18,5 @@ use App\Http\Controllers\TodoController;
 
 Route::middleware('api')->group(function () {
     Route::resource('todos', TodoController::class);
+    Route::resource('posts', PostController::class);
 });

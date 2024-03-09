@@ -1,22 +1,22 @@
 import { createRouter, createWebHistory } from "vue-router";
-import TodoList from "./components/TodoList.vue";
-import TodoForm from "./components/TodoForm.vue";
+import PostList from "./components/PostList.vue";
+import PostForm from "./components/PostForm.vue";
 
 const routes = [
     {
         name: "home",
         path: "/",
-        component: TodoList,
+        component: PostList,
     },
     {
         name: "create",
         path: "/create",
-        component: TodoForm,
+        component: PostForm,
     },
     {
         name: "edit",
         path: "/edit/:id",
-        component: TodoForm,
+        component: PostForm,
     },
 ];
 

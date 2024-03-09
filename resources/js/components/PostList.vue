@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="text-center mt-4">Todo List</h2>
+        <h2 class="text-center mt-4">Post List</h2>
         <table class="table">
             <thead>
             <tr>
@@ -11,14 +11,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="todo in todos" :key="todo.id">
-                <td>{{ todo.id }}</td>
-                <td>{{ todo.title }}</td>
-                <td>{{ todo.description }}</td>
+            <tr v-for="post in posts" :key="post.id">
+                <td>{{ post.id }}</td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.description }}</td>
                 <td>
                     <div class="d-block">
-                        <router-link :to="{name: 'edit', params: { id: todo.id }}" class="btn btn-warning">Edit</router-link>
-                        <button class="btn btn-danger ms-3" @click="deleteTodo(todo.id)">Delete</button>
+                        <router-link :to="{name: 'edit', params: { id: post.id }}" class="btn btn-warning">Edit</router-link>
+                        <button class="btn btn-danger ms-3" @click="deletePost(post.id)">Delete</button>
                     </div>
                 </td>
             </tr>
@@ -31,25 +31,25 @@
     export default {
         data() {
             return {
-                todos: []
+                posts: []
             }
         },
         created() {
             this.axios
-                .get('http://localhost:8000/api/todos/')
+                .get('http://localhost:8000/api/posts/')
                 .then(response => {
-                    this.todos = response.data;
+                    this.posts = response.data;
                 });
         },
         methods: {
-            deleteTodo(id) {
+            deletePost(id) {
                 const confirmation = prompt('Are you sure?', 'Yes');
                 if (confirmation?.trim()?.toLowerCase() === 'yes' || confirmation?.trim()?.toLowerCase() === 'y') {
                     this.axios
-                    .delete(`http://localhost:8000/api/todos/${id}`)
+                    .delete(`http://localhost:8000/api/posts/${id}`)
                     .then(response => {
-                        let i = this.todos.map(data => data.id).indexOf(id);
-                        this.todos.splice(i, 1)
+                        let i = this.posts.map(data => data.id).indexOf(id);
+                        this.posts.splice(i, 1)
                     });
                 }
             }
